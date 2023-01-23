@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO-DO List app</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>To-Do List</h2>
+    </div>
+    <div>
+        <p>Note: when you doubleclick, it erases.</p>
+    </div>
+    <div class="todo-form">
+        <input type="text" placeholder="Add a todo...." class="todo-input" id="inputField">
+        <button type="submit" class="add-button" id="addToDo">ADD</button>
+    </div>
+    <div class="file-list" id="toDoContainer">
+        <ol class="todo-items">
+        </ol>
+    </div>
+    <script>
+        let addToDoButton = document.getElementById('addToDo');
+        let toDoContainer = document.getElementById('toDoContainer');
+        let inputField = document.getElementById('inputField');
+
+        addToDoButton.addEventListener('click', function() {
+            var paragraph = document.createElement('p');
+            paragraph.innerText = inputField.value;
+            toDoContainer.appendChild(paragraph);
+            inputField.value = '';
+            paragraph.addEventListener('click', function(){
+                paragraph.style.textDecoration = "line-through";
+            })
+            paragraph.addEventListener('dblclick', function(){
+                toDoContainer.removeChild(paragraph);
+            })
+        })
+    </script>
+</body>
+</html>
